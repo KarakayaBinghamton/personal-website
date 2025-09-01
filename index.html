@@ -332,13 +332,20 @@
 `;
 
 
-            document.querySelectorAll('.nav-link, .retro-button[data-page-link]').forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const pageId = e.currentTarget.dataset.page || e.currentTarget.dataset.pageLink;
-                    showPage(pageId);
-                });
-            });
+            document.addEventListener('click', (e) => {
+                const el = e.target.closest('a,button');
+                if (!el) return;
+
+                const pageId = el.dataset.page || el.dataset.pageLink;
+                if (pageId) {
+                  e.preventDefault();
+                  showPage(pageId);
+                  return;
+                }
+  // No preventDefault here -> external links (GitHub, Scholar, LinkedIn) work normally
+});
+
+                
             document.getElementById('mobile-menu-button').addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
         };
 
