@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muhammet Furkan Karakaya | Political Science PH.D.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-bg: #1a1a3a;
+            --dark-text: #a7d4d4;
+            --dark-header: #70A4B2;
+            --dark-card-bg: #11112a;
+            --dark-border: #70A4B2;
+            --dark-accent: #70A4B2;
+
+            --light-bg: #f0f4f8;
+            --light-text: #334155;
+            --light-header: #0ea5e9;
+            --light-card-bg: #ffffff;
+            --light-border: #cbd5e1;
+            --light-accent: #0ea5e9;
+        }
+        
+        /* --- C64 DARK THEME (DEFAULT) --- */
+        body {
+            font-family: 'VT323', monospace;
+            background-color: var(--dark-bg);
+            color: var(--dark-text);
+            position: relative;
+            overflow-x: hidden;
+            line-height: 1.7;
+            font-size: 1.25rem;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .scanline-overlay {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 1px, transparent 1px, transparent 2px);
+            pointer-events: none;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.3s;
+        }
+
+        h1, h2, h3, h4, .font-mono {
+            font-family: 'VT323', monospace;
+            text-shadow: 0 0 5px rgba(112, 164, 178, 0.7);
+            transition: color 0.3s, text-shadow 0.3s;
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--dark-header);
+        }
+
+        .blinking-cursor {
+            animation: blink 1s step-end infinite;
+            color: var(--dark-header);
+        }
+        @keyframes blink {
+            from, to { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        header {
+            background-color: var(--dark-bg) !important;
+            border-bottom: 2px solid var(--dark-border);
+            backdrop-filter: blur(10px);
+            transition: background-color 0.3s, border-bottom-color 0.3s;
+        }
+
+        .nav-link:hover {
+            color: #ffffff;
+            text-shadow: 0 0 8px #ffffff;
+        }
+        .nav-link.active {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .retro-button {
+            background-color: transparent;
+            border: 2px solid var(--dark-border);
+            color: var(--dark-accent);
+            padding: 0.75rem 1.5rem;
+            transition: all 0.2s ease-in-out;
+            text-align: center;
+            cursor: pointer;
+        }
+        .retro-button:hover:not(:disabled) {
+            background-color: var(--dark-accent);
+            color: var(--dark-bg);
+        }
+        
+        .retro-card {
+            background-color: var(--dark-card-bg);
+            border: 2px solid var(--dark-border);
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+        .retro-card:hover {
+            border-color: var(--dark-text);
+            transform: translateY(-2px);
+        }
+
+        .skill-bar {
+            height: 8px;
+            background-color: rgba(112, 164, 178, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--dark-accent), var(--dark-header));
+            transition: width 2s ease-in-out;
+            width: 0;
+        }
+
+        .typing-text {
+            border-right: 2px solid var(--dark-accent);
+            white-space: nowrap;
+            overflow: hidden;
+            font-family: 'VT323', monospace;
+        }
+
+        /* --- LIGHT THEME --- */
+        body.light {
+            background-color: var(--light-bg);
+            color: var(--light-text);
+            background-image: linear-gradient(rgba(107, 114, 128, 0.1) 1px, transparent 1px), linear-gradient(to right, rgba(107, 114, 128, 0.1) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        .light .scanline-overlay { opacity: 0; }
+        .light h1, .light h2, .light h3, .light h4 { color: var(--light-header); text-shadow: none; }
+        .light .blinking-cursor { color: var(--light-header); }
+        .light header { background-color: rgba(240, 244, 248, 0.9) !important; border-bottom-color: var(--light-border); }
+        .light .nav-link { color: var(--light-text); }
+        .light .nav-link:hover, .light .nav-link.active { color: var(--light-header); text-shadow: none; }
+        .light .retro-button { border-color: var(--light-border); color: var(--light-accent); }
+        .light .retro-button:hover:not(:disabled) { background-color: var(--light-accent); color: white; }
+        .light .retro-card { background-color: var(--light-card-bg); border-color: var(--light-border); }
+        .light .retro-card:hover { border-color: var(--light-accent); }
+        .light .floating-element { color: rgba(14, 165, 233, 0.1); }
+        .light .text-gray-400 { color: #64748b; }
+        .light .text-cyan-300 { color: #38bdf8; }
+        .light footer p { color: #64748b; }
+        .light .skill-bar { background-color: rgba(14, 165, 233, 0.2); }
+        .light .skill-fill { background: linear-gradient(90deg, var(--light-accent), var(--light-header)); }
+        .light .typing-text { border-right-color: var(--light-accent); }
+
+        /* --- SHARED STYLES --- */
+        .fade-in-section { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+        .fade-in-section.is-visible { opacity: 1; transform: translateY(0); }
+        
+        @keyframes float { 0% { transform: translateY(0px) rotate(-2deg); } 50% { transform: translateY(-20px) rotate(3deg); } 100% { transform: translateY(0px) rotate(-2deg); } }
+        .floating-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1; }
+        .floating-element { position: absolute; color: rgba(112, 164, 178, 0.1); animation: float infinite ease-in-out; display: none; }
+        @media (min-width: 1024px) { .floating-element { display: block; } }
+        .float-1 { top: 15%; left: 5%; width: 60px; height: 60px; animation-duration: 10s; }
+        .float-2 { top: 70%; left: 10%; width: 40px; height: 40px; animation-duration: 12s; animation-delay: 2s; }
+        .float-3 { top: 20%; right: 8%; width: 50px; height: 50px; animation-duration: 8s; animation-delay: 1s; }
+        .float-4 { top: 80%; right: 12%; width: 80px; height: 80px; animation-duration: 15s; }
+
+        /* Theme Toggle Button */
+        #theme-toggle {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            z-index: 100;
+            width: 3.5rem;
+            height: 3.5rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--dark-border);
+            background-color: var(--dark-card-bg);
+            color: var(--dark-text);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        .light #theme-toggle {
+            border-color: var(--light-border);
+            background-color: var(--light-card-bg);
+            color: var(--light-text);
+        }
+        #theme-toggle:hover {
+             transform: translateY(-5px);
+             box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        .chart-container {
+            position: relative;
+            height: 200px;
+            width: 100%;
+        }
+
+        .terminal-output {
+            background-color: rgba(0,0,0,0.8);
+            padding: 1rem;
+            border-radius: 4px;
+            font-family: 'VT323', monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            color: #00ff00;
+            margin: 1rem 0;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .light .terminal-output {
+            background-color: rgba(0,0,0,0.05);
+            color: var(--light-text);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="scanline-overlay"></div>
+    <div class="floating-elements">
+        <div class="floating-element float-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg></div>
+        <div class="floating-element float-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
+        <div class="floating-element float-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg></div>
+        <div class="floating-element float-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg></div>
+    </div>
+    
+    <header id="header" class="sticky top-0 z-50 transition-all duration-300">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" data-page="home" class="nav-link text-3xl">M.F.K_</a>
+            <nav class="hidden md:flex space-x-8 text-2xl">
+                <a href="#" data-page="home" class="nav-link active">Home</a>
+                <a href="#" data-page="about" class="nav-link">About</a>
+                <a href="#" data-page="research" class="nav-link">Research</a>
+                <a href="#" data-page="experience" class="nav-link">Experience</a>
+                <a href="#" data-page="projects" class="nav-link">Projects</a>
+            </nav>
+            <button id="mobile-menu-button" class="md:hidden text-3xl text-gray-400">
+                &#9776;
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 text-2xl">
+             <a href="#" data-page="home" class="nav-link block py-2">Home</a>
+             <a href="#" data-page="about" class="nav-link block py-2">About</a>
+             <a href="#" data-page="research" class="nav-link block py-2">Research</a>
+             <a href="#" data-page="experience" class="nav-link block py-2">Experience</a>
+             <a href="#" data-page="projects" class="nav-link block py-2">Projects</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 md:py-24">
+        <section id="home" class="page-section fade-in-section is-visible min-h-[70vh] flex items-center">
+            <div class="grid md:grid-cols-5 gap-12 items-center">
+                <div class="md:col-span-3">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl mb-2 whitespace-nowrap">Muhammet Furkan Karakaya<span class="blinking-cursor">_</span></h1>
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl text-gray-400 mb-6">
+                        <span class="typing-text" id="typing-subtitle">Computational Social Scientist, PH.D.</span>
+                    </h2>
+                    <p class="max-w-3xl leading-relaxed mb-8">
+                        I build models and analyze data to understand political parties, elections, and representation. As an enthusiastic self-learner, I explore novel computational tools and methods to support evidence-based decision-making for political individuals, institutions, and entities.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <button class="retro-button" onclick="showPage('about')">
+                            Learn More
+                        </button>
+                        <a href="Muhammet%20Furkan%20Karakaya%20Resume%20Academic.pdf" target="_blank" class="retro-button">
+                            Download CV
+                        </a>
+                    </div>
+                </div>
+                <div class="md:col-span-2 hidden md:block">
+                     <div class="p-1 border-2 border-cyan-400 hover:border-white transition-colors" style="transform: rotate(3deg);">
+                        <img src="profile.jpg" alt="Muhammet Furkan Karakaya" class="w-full h-auto filter grayscale hover:grayscale-0 transition-all duration-300">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="page-section hidden py-20 md:py-28 fade-in-section">
+            <h2 class="text-5xl mb-8">&gt; About Me</h2>
+           <div class="grid md:grid-cols-5 gap-12 items-start">
+               <div class="md:col-span-3">
+                   <p class="mb-4">
+                       I'm a political scientist with a Ph.D. from Binghamton University, specializing in computational social science. My research focuses on political parties, elections, representation, and party systems, where I employ quantitative and computational methods to analyze political behavior and party strategies.
+                   </p>
+                    <p class="mb-6">
+                       My dissertation, "A Computational Approach to Party Cohesion: When Do Parties Use the Broad-Appeal Strategy in Different Party Systems?", explores party behavior through advanced NLP and topic modeling techniques. I'm passionate about turning complex political questions into testable models and clear data visualizations.
+                   </p>
+                   
+                   <h3 class="text-3xl mb-4">&gt; Technical Skills</h3>
+                   <div class="space-y-4 mb-6">
+                       <div>
+                           <div class="flex justify-between mb-1">
+                               <span>Python & Data Science</span>
+                               <span class="text-cyan-300">95%</span>
+                           </div>
+                           <div class="skill-bar"><div class="skill-fill" data-width="95"></div></div>
+                       </div>
+                       <div>
+                           <div class="flex justify-between mb-1">
+                               <span>R Programming & Shiny</span>
+                               <span class="text-cyan-300">90%</span>
+                           </div>
+                           <div class="skill-bar"><div class="skill-fill" data-width="90"></div></div>
+                       </div>
+                       <div>
+                           <div class="flex justify-between mb-1">
+                               <span>SQL & Database Management</span>
+                               <span class="text-cyan-300">85%</span>
+                           </div>
+                           <div class="skill-bar"><div class="skill-fill" data-width="85"></div></div>
+                       </div>
+                       <div>
+                           <div class="flex justify-between mb-1">
+                               <span>STATA & Statistical Analysis</span>
+                               <span class="text-cyan-300">88%</span>
+                           </div>
+                           <div class="skill-bar"><div class="skill-fill" data-width="88"></div></div>
+                       </div>
+                       <div>
+                           <div class="flex justify-between mb-1">
+                               <span>Machine Learning & NLP</span>
+                               <span class="text-cyan-300">80%</span>
+                           </div>
+                           <div class="skill-bar"><div class="skill-fill" data-width="80"></div></div>
+                       </div>
+                   </div>
+                   
+                   <h3 class="text-3xl mb-4">&gt; Languages</h3>
+                   <p class="mb-6 text-xl">Turkish (Native) • English (Professional) • Arabic (Intermediate) • Ottoman Turkish (Intermediate)</p>
+                   
+                   <div class="flex flex-wrap gap-4">
+                       <a href="Muhammet%20Furkan%20Karakaya%20Resume%20Academic.pdf" target="_blank" class="retro-button">
+                           View Full Resume
+                       </a>
+                   </div>
+               </div>
+               <div class="md:col-span-2">
+                   <div class="p-1 border-2 border-cyan-400 md:hidden mb-4">
+                       <img src="profile.jpg" alt="Muhammet Furkan Karakaya" class="w-full h-auto filter grayscale"> 
+                   </div>
+                   <div class="flex justify-center gap-6 mt-4">
+                       <a href="https://www.linkedin.com/in/muhammetfurkankarakaya/" target="_blank" class="nav-link text-gray-400 hover:text-blue-400 transform hover:scale-110 transition-all">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-2.199 1.561-4.002 3.492-4.002s3.51 1.802 3.51 4.002v8.399h4.988v-10.131c0-4.87-3.304-7.869-6.479-7.869-3.174 0-5.508 2.399-5.508 2.399v-2.023h-4.987z"/></svg>
+                       </a>
+                       <a href="https://github.com/KarakayaBinghamton" target="_blank" class="nav-link text-gray-400 hover:text-white transform hover:scale-110 transition-all">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386C24 5.373 18.627 0 12 0z"/></svg>
+                       </a>
+                       <a href="https://scholar.google.com/citations?user=YVgWtDMAAAAJ&hl=en&oi=ao" target="_blank" class="nav-link text-gray-400 hover:text-red-400 transform hover:scale-110 transition-all">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5L12 0l12 9.5l-5.242 4.269C17.548 11.249 14.978 9 12 9s-5.548 2.249-6.758 4.769zM12 10c-3.314 0-6 2.686-6 6s2.686 6 6 6s6-2.686 6-6s-2.686-6-6-6z"/></svg>
+                       </a>
+                   </div>
+               </div>
+           </div>
+       </section>
+       
+        <section id="research" class="page-section hidden py-20 md:py-28 fade-in-section">
+            <h2 class="text-5xl mb-12">&gt; Research</h2>
+            <h3 class="text-4xl mb-8">Published Articles</h3>
+            <div class="space-y-12 mb-16">
+                <div class="retro-card p-6">
+                    <div class="grid md:grid-cols-3 gap-8 items-center">
+                        <div class="md:col-span-2">
+                            <p class="text-gray-400 mb-2">Dentistry Journal, 2023</p>
+                            <h4 class="text-3xl mb-2">Dental Anxiety and Its Association with Dietary Intake and Food Groups</h4>
+                            <p class="text-xl mb-4">Begdache, L., Ahmed, E., Malik, S., & <strong class="text-cyan-300">Karakaya, M. F.</strong></p>
+                            <p class="leading-relaxed"><strong>Abstract:</strong> This cross-sectional study investigates the correlation between dental anxiety levels and dietary patterns in a cohort of university students, providing insights into health behavior relationships.</p>
+                        </div>
+                        <div class="md:col-span-1">
+                            <div class="chart-container">
+                                <canvas id="dentalChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="retro-card p-6">
+                    <div class="grid md:grid-cols-3 gap-8 items-center">
+                        <div class="md:col-span-2">
+                            <p class="text-gray-400 mb-2">Journal of Autism and Developmental Disorders, 2025</p>
+                            <h4 class="text-3xl mb-2">A systematic literature review of racial disproportionality in autism in the US</h4>
+                            <p class="text-xl mb-4">Kim, H., <strong class="text-cyan-300">Karakaya, M. F.</strong>, Skinner, M., & Baker, D.</p>
+                            <p class="leading-relaxed"><strong>Abstract:</strong> Our systematic review examines racial disproportionality in autism diagnosis within the US, analyzing patterns and implications for policy and practice.</p>
+                        </div>
+                        <div class="md:col-span-1">
+                            <div class="chart-container">
+                                <canvas id="autismChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 class="text-4xl mb-8">Works in Progress</h3>
+            <div class="space-y-12">
+                <div class="retro-card p-6">
+                    <div class="grid md:grid-cols-3 gap-8 items-center">
+                        <div class="md:col-span-2">
+                            <p class="text-gray-400 mb-2">Dissertation Project</p>
+                            <h4 class="text-3xl mb-2">A Computational Approach to Party Cohesion</h4>
+                            <p class="text-xl mb-4"><strong class="text-cyan-300">Karakaya, M. F.</strong></p>
+                            <p class="leading-relaxed mb-4"><strong>Abstract:</strong> This paper employs NLP and topic modeling on parliamentary speeches and party manifestos to measure the ideological cohesion of an ethnic party in Turkey, examining when parties use broad-appeal strategies.</p>
+                            <div class="terminal-output">
+                                <div>$ python party_cohesion_analyzer.py --data turkish_parliament</div>
+                                <div>Loading parliamentary speeches... ✓</div>
+                                <div>Running topic modeling (LDA)...</div>
+                                <div>Cohesion score: 0.847 (High)</div>
+                                <div>Broad-appeal strategy detected: 73% of speeches</div>
+                                <div>Generating visualizations... ✓</div>
+                            </div>
+                        </div>
+                        <div class="md:col-span-1">
+                            <div class="chart-container">
+                                <canvas id="cohesionChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="retro-card p-6">
+                    <p class="text-gray-400 mb-2">Under Review</p>
+                    <h4 class="text-3xl mb-2">Examining the evolution of online tax and fee payment systems</h4>
+                    <p class="text-xl mb-4">Jones, P. A., <strong class="text-cyan-300">Karakaya, M. F.</strong>, & Reitano, V.</p>
+                    <p class="leading-relaxed">International Journal of Public Administration - Analyzing digital transformation in government services.</p>
+                </div>
+                <div class="retro-card p-6">
+                    <p class="text-gray-400 mb-2">Working Paper</p>
+                    <h4 class="text-3xl mb-2">Effects of co-ethnic terrorism on ethnic voting: Kurdish voters in Turkey</h4>
+                    <p class="text-xl mb-4"><strong class="text-cyan-300">Karakaya, M. F.</strong></p>
+                    <p class="leading-relaxed">Examining how terrorism events affect electoral behavior in ethnic communities using computational methods.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="page-section hidden py-20 md:py-28 fade-in-section">
+             <h2 class="text-5xl mb-8">&gt; Experience</h2>
+             <div class="space-y-8">
+                  <div class="retro-card p-6">
+                      <div class="flex flex-wrap justify-between items-baseline gap-2">
+                          <h3 class="text-3xl">Research Assistant</h3>
+                          <p class="text-gray-400 text-xl">Oct 2024 - Present</p>
+                      </div>
+                      <p class="text-cyan-300/80 mb-4">Dr. Vincent Reitano, Public Policy Department, Binghamton University</p>
+                      <ul class="list-disc list-inside space-y-2">
+                          <li>Support research on quantitative methodology for multiple public policy research projects</li>
+                          <li>Co-authored research papers on digital government services and policy analysis</li>
+                      </ul>
+                  </div>
+                  <div class="retro-card p-6">
+                      <div class="flex flex-wrap justify-between items-baseline gap-2">
+                          <h3 class="text-3xl">Graduate Academic Coding and Statistical Consultancy</h3>
+                          <p class="text-gray-400 text-xl">Jan 2022 - Present</p>
+                      </div>
+                      <p class="text-cyan-300/80 mb-4">Binghamton University Graduate School</p>
+                      <ul class="list-disc list-inside space-y-2">
+                          <li>Support graduate students with coding languages: STATA, R, SQL, and Python</li>
+                          <li>Organize and lead training workshops on computational and statistical methods</li>
+                          <li>Developed comprehensive curriculum for data science education</li>
+                      </ul>
+                  </div>
+                  <div class="retro-card p-6">
+                      <div class="flex flex-wrap justify-between items-baseline gap-2">
+                          <h3 class="text-3xl">Lecturer for PLSC 398</h3>
+                          <p class="text-gray-400 text-xl">Dec 2024 - Jan 2025</p>
+                      </div>
+                      <p class="text-cyan-300/80 mb-4">Political Science Department, Binghamton University</p>
+                      <ul class="list-disc list-inside space-y-2">
+                          <li>Self-designed comprehensive course: "Social Data Analytics Using Python"</li>
+                          <li>Covered data cleaning, visualization, and statistical analysis of structured/unstructured datasets</li>
+                          <li>Prepared students for data-driven research and policy-making applications</li>
+                      </ul>
+                  </div>
+                  <div class="retro-card p-6">
+                      <div class="flex flex-wrap justify-between items-baseline gap-2">
+                          <h3 class="text-3xl">Data Analyst</h3>
+                          <p class="text-gray-400 text-xl">Jan 2024 - Oct 2024</p>
+                      </div>
+                      <p class="text-cyan-300/80 mb-4">Student Affairs Assessment, Binghamton University</p>
+                      <ul class="list-disc list-inside space-y-2">
+                          <li>Implemented ETL processes and integrated data from multiple sources</li>
+                          <li>Created accurate, reproducible reports and visualizations for university stakeholders</li>
+                          <li>Developed automated reporting systems for institutional assessment</li>
+                      </ul>
+                  </div>
+             </div>
+        </section>
+
+        <section id="projects" class="page-section hidden py-20 md:py-28 fade-in-section">
+            <h2 class="text-5xl mb-8">&gt; Projects</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="retro-card p-6 flex flex-col">
+                    <h3 class="text-3xl mb-2">U.S. Congressional Election Analysis</h3>
+                    <p class="mb-4 flex-grow">Analysis of roll-call vote data to identify voting blocs and measure party discipline using clustering algorithms and network analysis.</p>
+                    <div class="text-cyan-300/70 text-base">Python | R | NetworkX | Scikit-learn</div>
+                </div>
+                <div class="retro-card p-6 flex flex-col">
+                    <h3 class="text-3xl mb-2">Party Cohesion Visualization Tool</h3>
+                    <p class="mb-4 flex-grow">Interactive R Shiny application to explore ideological cohesion of political parties based on manifesto data and parliamentary speeches.</p>
+                    <div class="text-cyan-300/70 text-base">R Shiny | NLP | Topic Modeling</div>
+                </div>
+                <div class="retro-card p-6 flex flex-col">
+                    <h3 class="text-3xl mb-2">Terrorism & Electoral Data Pipeline</h3>
+                    <p class="mb-4 flex-grow">Automated pipeline to collect, clean, and merge data on terrorist events with electoral results in Turkey using web scraping and GIS.</p>
+                    <div class="text-cyan-300/70 text-base">Python | BeautifulSoup | PostGIS</div>
+                </div>
+                <div class="retro-card p-6 flex flex-col">
+                    <h3 class="text-3xl mb-2">Social Data Analytics Curriculum</h3>
+                    <p class="mb-4 flex-grow">Comprehensive Python-based curriculum for social science data analysis, including interactive notebooks and real-world case studies.</p>
+                    <div class="text-cyan-300/70 text-base">Python | Jupyter | Pandas | Matplotlib</div>
+                </div>
+                <div class="retro-card p-6 flex flex-col">
+                    <h3 class="text-3xl mb-2">Parliamentary Speech Analyzer</h3>
+                    <p class="mb-4 flex-grow">NLP toolkit for analyzing parliamentary speeches using topic modeling, sentiment analysis, and ideological scaling techniques.</p>
+                    <div class="text-cyan-300/70 text-base">Python | spaCy | Gensim | BERT</div>
+                </div>
+                <div class="retro-card p-6 flex flex-col">
+                    <h3 class="text-3xl mb-2">COVID-19 Election Impact Study</h3>
+                    <p class="mb-4 flex-grow">Statistical analysis of natural disaster effects on voter turnout, focusing on COVID-19's impact on 2020 US primary elections.</p>
+                    <div class="text-cyan-300/70 text-base">R | STATA | Causal Inference</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
+        <span id="theme-icon">🌙</span>
+    </button>
+    
+    <footer class="text-center py-6 text-gray-500 text-xl">
+        <p>C:\&gt; Designed & Built by M. Furkan Karakaya, 2025</p>
+    </footer>
+
+    <script>
+        // Global variables
+        let isLightTheme = false;
+        
+        // Navigation functionality
+        function showPage(pageId) {
+            const pages = document.querySelectorAll('.page-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            pages.forEach(page => {
+                page.classList.add('hidden');
+                page.classList.remove('is-visible');
+            });
+            
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                setTimeout(() => {
+                   targetPage.classList.add('is-visible');
+                }, 50);
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.dataset.page === pageId) {
+                    link.classList.add('active');
+                }
+            });
+
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+            
+            window.scrollTo(0, 0);
+            
+            // Animate skills bars if showing about page
+            if (pageId === 'about') {
+                setTimeout(animateSkills, 300);
+            }
+            
+            // Initialize charts if showing research page
+            if (pageId === 'research') {
+                setTimeout(initCharts, 300);
+            }
+        }
+
+        // Theme toggle functionality
+        function toggleTheme() {
+            const body = document.body;
+            const themeIcon = document.getElementById('theme-icon');
+            
+            isLightTheme = !isLightTheme;
+            
+            if (isLightTheme) {
+                body.classList.add('light');
+                themeIcon.textContent = '☀️';
+            } else {
+                body.classList.remove('light');
+                themeIcon.textContent = '🌙';
+            }
+        }
+
+        // Animate skill bars
+        function animateSkills() {
+            const skillFills = document.querySelectorAll('.skill-fill');
+            skillFills.forEach(fill => {
+                const width = fill.dataset.width;
+                setTimeout(() => {
+                    fill.style.width = width + '%';
+                }, 200);
+            });
+        }
+
+        // Initialize charts
+        function initCharts() {
+            // Dental anxiety chart
+            const dentalCtx = document.getElementById('dentalChart');
+            if (dentalCtx && !dentalCtx.chart) {
+                dentalCtx.chart = new Chart(dentalCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Low Anxiety', 'Moderate', 'High Anxiety'],
+                        datasets: [{
+                            data: [45, 35, 20],
+                            backgroundColor: ['#70A4B2', '#a7d4d4', '#1a1a3a'],
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        }
+                    }
+                });
+            }
+
+            // Autism study chart
+            const autismCtx = document.getElementById('autismChart');
+            if (autismCtx && !autismCtx.chart) {
+                autismCtx.chart = new Chart(autismCtx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['White', 'Black', 'Hispanic', 'Asian'],
+                        datasets: [{
+                            label: 'Diagnosis Rate',
+                            data: [2.3, 1.8, 1.5, 1.2],
+                            backgroundColor: '#70A4B2',
+                            borderColor: '#a7d4d4',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: { beginAtZero: true }
+                        }
+                    }
+                });
+            }
+
+            // Party cohesion chart
+            const cohesionCtx = document.getElementById('cohesionChart');
+            if (cohesionCtx && !cohesionCtx.chart) {
+                cohesionCtx.chart = new Chart(cohesionCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['2015', '2016', '2017', '2018', '2019', '2020'],
+                        datasets: [{
+                            label: 'Cohesion Score',
+                            data: [0.72, 0.78, 0.81, 0.85, 0.84, 0.87],
+                            borderColor: '#70A4B2',
+                            backgroundColor: 'rgba(112, 164, 178, 0.1)',
+                            fill: true,
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: { display: false }
+                        },
+                        scales: {
+                            y: { 
+                                beginAtZero: false,
+                                min: 0.7,
+                                max: 0.9
+                            }
+                        }
+                    }
+                });
+            }
+        }
+
+        // Typing effect for subtitle
+        function typeWriter(element, text, speed = 50) {
+            element.textContent = '';
+            element.style.borderRight = '2px solid var(--dark-accent)';
+            
+            let i = 0;
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    // Keep blinking cursor
+                    setInterval(() => {
+                        element.style.borderRight = element.style.borderRight === 'none' ? 
+                            '2px solid var(--dark-accent)' : 'none';
+                    }, 500);
+                }
+            }
+            type();
+        }
+
+        // Initialize when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            // Navigation event listeners
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const pageId = e.currentTarget.dataset.page;
+                    showPage(pageId);
+                });
+            });
+
+            // Start typing effect
+            const subtitle = document.getElementById('typing-subtitle');
+            setTimeout(() => {
+                typeWriter(subtitle, 'Computational Social Scientist, Ph.D.');
+            }, 1000);
+
+            // Animate skills on load if about page is visible
+            setTimeout(animateSkills, 2000);
+        });
+    </script>
+
+</body>
+</html>
