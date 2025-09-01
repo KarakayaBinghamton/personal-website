@@ -2,477 +2,780 @@
 <html lang="en" class="scroll-smooth">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muhammet Furkan Karakaya | Political Science PH.D.</title>
-    <script src="https://cdn.tailwindcss.com/"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --dark-bg: #1a1a3a;
-            --dark-text: #a7d4d4;
-            --dark-header: #70A4B2;
-            --dark-card-bg: #11112a;
-            --dark-border: #70A4B2;
-            --dark-accent: #70A4B2;
-            --dark-glow: rgba(112, 164, 178, 0.5);
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Muhammet Furkan Karakaya | Political Science PH.D.</title>
+  <script src="https://cdn.tailwindcss.com/"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --dark-bg: #1a1a3a;
+      --dark-text: #a7d4d4;
+      --dark-header: #70A4B2;
+      --dark-card-bg: #11112a;
+      --dark-border: #70A4B2;
+      --dark-accent: #70A4B2;
+      --dark-glow: rgba(112, 164, 178, 0.5);
 
-            --light-bg: #f0f4f8;
-            --light-text: #334155;
-            --light-header: #0ea5e9;
-            --light-card-bg: #ffffff;
-            --light-border: #cbd5e1;
-            --light-accent: #0ea5e9;
-        }
-        
-        body {
-            font-family: 'VT323', monospace;
-            background-color: var(--dark-bg);
-            color: var(--dark-text);
-            position: relative;
-            overflow-x: hidden;
-            line-height: 1.7;
-            font-size: 1.25rem;
-            letter-spacing: 0.05em;
-            transition: background-color 0.3s, color 0.3s;
-        }
+      --light-bg: #f0f4f8;
+      --light-text: #334155;
+      --light-header: #0ea5e9;
+      --light-card-bg: #ffffff;
+      --light-border: #cbd5e1;
+      --light-accent: #0ea5e9;
+    }
 
-        .scanline-overlay {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 1px, transparent 1px, transparent 2px);
-            pointer-events: none; z-index: 1000; opacity: 1; transition: opacity 0.3s;
-        }
+    body {
+      font-family: 'VT323', monospace;
+      background-color: var(--dark-bg);
+      color: var(--dark-text);
+      position: relative;
+      overflow-x: hidden;
+      line-height: 1.7;
+      font-size: 1.25rem;
+      letter-spacing: 0.05em;
+      transition: background-color 0.3s, color 0.3s;
+    }
 
-        h1, h2, h3, h4 {
-            font-family: 'VT323', monospace;
-            text-shadow: 0 0 5px var(--dark-glow);
-            transition: color 0.3s, text-shadow 0.3s;
-            color: var(--dark-header);
-        }
+    .scanline-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) 1px, transparent 1px, transparent 2px);
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
 
-        .blinking-cursor { animation: blink 1s step-end infinite; color: var(--dark-header); }
-        @keyframes blink { from, to { opacity: 1; } 50% { opacity: 0; } }
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'VT323', monospace;
+      text-shadow: 0 0 5px var(--dark-glow);
+      transition: color 0.3s, text-shadow 0.3s;
+      color: var(--dark-header);
+    }
 
-        header {
-            background-color: rgba(26, 26, 58, 0.85); border-bottom: 2px solid var(--dark-border);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            transition: background-color 0.3s, border-bottom-color 0.3s;
-        }
+    .blinking-cursor {
+      animation: blink 1s step-end infinite;
+      color: var(--dark-header);
+    }
 
-        .nav-link:hover { color: #ffffff; text-shadow: 0 0 8px #ffffff; }
-        .nav-link.active { color: #ffffff; font-weight: bold; }
+    @keyframes blink {
+      from,
+      to {
+        opacity: 1;
+      }
 
-        .retro-button {
-            background-color: transparent; border: 2px solid var(--dark-border); color: var(--dark-accent);
-            padding: 0.75rem 1.5rem; transition: all 0.2s ease-in-out; text-align: center; cursor: pointer;
-        }
-        .retro-button:hover:not(:disabled) {
-            background-color: var(--dark-accent); color: var(--dark-bg); transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-        .retro-button:active:not(:disabled) { transform: translateY(0px); }
-        
-        .retro-card {
-            background-color: var(--dark-card-bg); border: 2px solid var(--dark-border);
-            transition: all 0.2s ease-in-out; opacity: 0; transform: translateY(20px);
-        }
-        .retro-card.is-visible { opacity: 1; transform: translateY(0); }
-        .retro-card:hover {
-            border-color: var(--dark-text); transform: translateY(-5px);
-            box-shadow: 0 0 15px var(--dark-glow);
-        }
+      50% {
+        opacity: 0;
+      }
+    }
 
-        .typing-container { min-height: 2.5em; }
-        .typing-text-cursor { display: inline-block; background-color: var(--dark-header); margin-left: 0.1em; width: 3px; animation: blink 1s infinite; }
+    header {
+      background-color: rgba(26, 26, 58, 0.85);
+      border-bottom: 2px solid var(--dark-border);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background-color 0.3s, border-bottom-color 0.3s;
+    }
 
-        body.light {
-            background-color: var(--light-bg); color: var(--light-text);
-            background-image: linear-gradient(rgba(107, 114, 128, 0.1) 1px, transparent 1px), linear-gradient(to right, rgba(107, 114, 128, 0.1) 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-        .light .scanline-overlay { opacity: 0; }
-        .light h1, .light h2, .light h3, .light h4 { color: var(--light-header); text-shadow: none; }
-        .light .blinking-cursor, .light .typing-text-cursor { background-color: var(--light-header); }
-        .light header { background-color: rgba(240, 244, 248, 0.85) !important; border-bottom-color: var(--light-border); }
-        .light .nav-link { color: var(--light-text); }
-        .light .nav-link:hover, .light .nav-link.active { color: var(--light-header); text-shadow: none; }
-        .light .retro-button { border-color: var(--light-border); color: var(--light-accent); }
-        .light .retro-button:hover:not(:disabled) { background-color: var(--light-accent); color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-        .light .retro-card { background-color: var(--light-card-bg); border-color: var(--light-border); }
-        .light .retro-card:hover { border-color: var(--light-accent); box-shadow: 0 6px 12px rgba(0,0,0,0.1); }
-        .light .floating-element { color: rgba(14, 165, 233, 0.1); }
-        .light .text-gray-400 { color: #64748b; }
-        .light .text-cyan-300 { color: #38bdf8; }
-        .light footer p { color: #64748b; }
-        .light #research-modal .retro-card { border-color: var(--light-border); }
-        .light #modal-close-btn { color: var(--light-text); }
+    .nav-link:hover {
+      color: #ffffff;
+      text-shadow: 0 0 8px #ffffff;
+    }
 
-        @keyframes float { 0% { transform: translateY(0px) rotate(-2deg); } 50% { transform: translateY(-20px) rotate(3deg); } 100% { transform: translateY(0px) rotate(-2deg); } }
-        .floating-elements { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1; }
-        .floating-element { position: absolute; color: rgba(112, 164, 178, 0.1); animation: float infinite ease-in-out; display: none; }
-        @media (min-width: 1024px) { .floating-element { display: block; } }
-        .float-1 { top: 15%; left: 5%; width: 60px; height: 60px; animation-duration: 10s; }
-        .float-2 { top: 70%; left: 10%; width: 40px; height: 40px; animation-duration: 12s; animation-delay: 2s; }
-        .float-3 { top: 20%; right: 8%; width: 50px; height: 50px; animation-duration: 8s; animation-delay: 1s; }
-        .float-4 { top: 80%; right: 12%; width: 80px; height: 80px; animation-duration: 15s; }
-        #theme-toggle { position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 100; width: 3.5rem; height: 3.5rem; border-radius: 9999px; display: flex; align-items: center; justify-content: center; border: 2px solid var(--dark-border); background-color: var(--dark-card-bg); color: var(--dark-text); transition: all 0.3s; cursor: pointer; }
-        .light #theme-toggle { border-color: var(--light-border); background-color: var(--light-card-bg); color: var(--light-text); }
-        #theme-toggle:hover { transform: translateY(-5px); box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
-        .theme-icon { width: 1.5rem; height: 1.5rem; }
-        
-        #research-modal { transition: opacity 0.3s; }
-        #research-modal .retro-card { border-color: var(--dark-border); }
-        #modal-close-btn { transition: transform 0.2s; }
-        #modal-close-btn:hover { transform: scale(1.2); }
-        .modal-content { line-height: 1.8; }
-    </style>
+    .nav-link.active {
+      color: #ffffff;
+      font-weight: bold;
+    }
+
+    .retro-button {
+      background-color: transparent;
+      border: 2px solid var(--dark-border);
+      color: var(--dark-accent);
+      padding: 0.75rem 1.5rem;
+      transition: all 0.2s ease-in-out;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .retro-button:hover:not(:disabled) {
+      background-color: var(--dark-accent);
+      color: var(--dark-bg);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+
+    .retro-button:active:not(:disabled) {
+      transform: translateY(0px);
+    }
+
+    .retro-card {
+      background-color: var(--dark-card-bg);
+      border: 2px solid var(--dark-border);
+      transition: all 0.2s ease-in-out;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+
+    .retro-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .retro-card:hover {
+      border-color: var(--dark-text);
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px var(--dark-glow);
+    }
+
+    .typing-container {
+      min-height: 2.5em;
+    }
+
+    .typing-text-cursor {
+      display: inline-block;
+      background-color: var(--dark-header);
+      margin-left: 0.1em;
+      width: 3px;
+      animation: blink 1s infinite;
+    }
+
+    body.light {
+      background-color: var(--light-bg);
+      color: var(--light-text);
+      background-image: linear-gradient(rgba(107, 114, 128, 0.1) 1px, transparent 1px),
+        linear-gradient(to right, rgba(107, 114, 128, 0.1) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .light .scanline-overlay {
+      opacity: 0;
+    }
+
+    .light h1,
+    .light h2,
+    .light h3,
+    .light h4 {
+      color: var(--light-header);
+      text-shadow: none;
+    }
+
+    .light .blinking-cursor,
+    .light .typing-text-cursor {
+      background-color: var(--light-header);
+    }
+
+    .light header {
+      background-color: rgba(240, 244, 248, 0.85) !important;
+      border-bottom-color: var(--light-border);
+    }
+
+    .light .nav-link {
+      color: var(--light-text);
+    }
+
+    .light .nav-link:hover,
+    .light .nav-link.active {
+      color: var(--light-header);
+      text-shadow: none;
+    }
+
+    .light .retro-button {
+      border-color: var(--light-border);
+      color: var(--light-accent);
+    }
+
+    .light .retro-button:hover:not(:disabled) {
+      background-color: var(--light-accent);
+      color: white;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .light .retro-card {
+      background-color: var(--light-card-bg);
+      border-color: var(--light-border);
+    }
+
+    .light .retro-card:hover {
+      border-color: var(--light-accent);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .light .floating-element {
+      color: rgba(14, 165, 233, 0.1);
+    }
+
+    .light .text-gray-400 {
+      color: #64748b;
+    }
+
+    .light .text-cyan-300 {
+      color: #38bdf8;
+    }
+
+    .light footer p {
+      color: #64748b;
+    }
+
+    .light #research-modal .retro-card {
+      border-color: var(--light-border);
+    }
+
+    .light #modal-close-btn {
+      color: var(--light-text);
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateY(-20px) rotate(3deg);
+      }
+
+      100% {
+        transform: translateY(0px) rotate(-2deg);
+      }
+    }
+
+    .floating-elements {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .floating-element {
+      position: absolute;
+      color: rgba(112, 164, 178, 0.1);
+      animation: float infinite ease-in-out;
+      display: none;
+    }
+
+    @media (min-width: 1024px) {
+      .floating-element {
+        display: block;
+      }
+    }
+
+    .float-1 {
+      top: 15%;
+      left: 5%;
+      width: 60px;
+      height: 60px;
+      animation-duration: 10s;
+    }
+
+    .float-2 {
+      top: 70%;
+      left: 10%;
+      width: 40px;
+      height: 40px;
+      animation-duration: 12s;
+      animation-delay: 2s;
+    }
+
+    .float-3 {
+      top: 20%;
+      right: 8%;
+      width: 50px;
+      height: 50px;
+      animation-duration: 8s;
+      animation-delay: 1s;
+    }
+
+    .float-4 {
+      top: 80%;
+      right: 12%;
+      width: 80px;
+      height: 80px;
+      animation-duration: 15s;
+    }
+
+    #theme-toggle {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--dark-border);
+      background-color: var(--dark-card-bg);
+      color: var(--dark-text);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .light #theme-toggle {
+      border-color: var(--light-border);
+      background-color: var(--light-card-bg);
+      color: var(--light-text);
+    }
+
+    #theme-toggle:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .theme-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+    }
+
+    #research-modal {
+      transition: opacity 0.3s;
+    }
+
+    #research-modal .retro-card {
+      border-color: var(--dark-border);
+    }
+
+    #modal-close-btn {
+      transition: transform 0.2s;
+    }
+
+    #modal-close-btn:hover {
+      transform: scale(1.2);
+    }
+
+    .modal-content {
+      line-height: 1.8;
+    }
+  </style>
 </head>
 
 <body>
-    <div class="scanline-overlay"></div>
-    <div class="floating-elements">
-        <div class="floating-element float-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg></div>
-        <div class="floating-element float-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
-        <div class="floating-element float-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg></div>
-        <div class="floating-element float-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg></div>
+  <div class="scanline-overlay"></div>
+  <div class="floating-elements">
+    <div class="floating-element float-1"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg></div>
+    <div class="floating-element float-2"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg></div>
+    <div class="floating-element float-3"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg></div>
+    <div class="floating-element float-4"><svg xmlns="http://www.w3.org/2000/svg" class="h-full w-full" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><path stroke-linecap="round" stroke-linejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" /><path stroke-linecap="round" stroke-linejoin="round" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" /></svg></div>
+  </div>
+
+  <header id="header" class="sticky top-0 z-50">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" data-page="home" class="nav-link text-3xl">M.F.K_</a>
+      <nav class="hidden md:flex space-x-8 text-2xl" id="desktop-nav"></nav>
+      <button id="mobile-menu-button" class="md:hidden text-3xl text-gray-400">&#9776;</button>
     </div>
-    
-    <header id="header" class="sticky top-0 z-50">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" data-page="home" class="nav-link text-3xl">M.F.K_</a>
-            <nav class="hidden md:flex space-x-8 text-2xl" id="desktop-nav"></nav>
-            <button id="mobile-menu-button" class="md:hidden text-3xl text-gray-400">&#9776;</button>
+    <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 text-2xl"></div>
+  </header>
+
+  <main class="container mx-auto px-6 py-16 md:py-24">
+    <section id="home" class="page-section min-h-[70vh] flex items-center">
+      <div class="grid md:grid-cols-5 gap-12 items-center">
+        <div class="md:col-span-3 order-1">
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl mb-2 md:whitespace-nowrap">Muhammet Furkan Karakaya<span class="blinking-cursor">_</span></h1>
+          <div class="typing-container text-3xl sm:text-4xl lg:text-5xl text-gray-400 mb-6">
+            <span id="typing-subtitle"></span><span class="typing-text-cursor"></span>
+          </div>
+          <p class="max-w-3xl leading-relaxed mb-8" id="home-intro"></p>
+          <div class="flex flex-wrap gap-4">
+            <button class="retro-button" data-page-link="about">Learn More</button>
+            <!-- (Optional) point to cv.html viewer instead of direct download -->
+            <a href="cv.html" class="retro-button">View CV</a>
+          </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4 text-2xl"></div>
-    </header>
-
-    <main class="container mx-auto px-6 py-16 md:py-24">
-        <section id="home" class="page-section min-h-[70vh] flex items-center">
-            <div class="grid md:grid-cols-5 gap-12 items-center">
-                <div class="md:col-span-3">
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl mb-2 md:whitespace-nowrap">Muhammet Furkan Karakaya<span class="blinking-cursor">_</span></h1>
-                    <div class="typing-container text-3xl sm:text-4xl lg:text-5xl text-gray-400 mb-6">
-                        <span id="typing-subtitle"></span><span class="typing-text-cursor"></span>
-                    </div>
-                    <p class="max-w-3xl leading-relaxed mb-8" id="home-intro"></p>
-                    <div class="flex flex-wrap gap-4">
-                        <button class="retro-button" data-page-link="about">Learn More</button>
-                        <a href="Muhammet Furkan Karakaya Resume Academic.pdf" target="_blank" class="retro-button">Download CV</a>
-                    </div>
-                </div>
-                <div class="md:col-span-2 order-2 md:order-2 block">
-                     <div class="p-1 border-2 border-cyan-400 md:hover:border-white transition-colors" style="transform: rotate(3deg);">
-                        <img src="profile.jpg" alt="Muhammet Furkan Karakaya" class="w-full h-auto filter grayscale md:hover:grayscale-0 transition-all duration-300 cursor-pointer" data-colorize>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="page-section hidden py-20 md:py-28">
-            <h2 class="text-5xl mb-8">&gt; About Me</h2>
-            <div class="grid md:grid-cols-5 gap-12 items-start">
-                <div class="md:col-span-3">
-                    <div id="about-text"></div>
-                </div>
-                <div class="md:col-span-2">
-                    <div class="p-1 border-2 border-cyan-400 md:hidden mb-4">
-                        <img src="profile.jpg" alt="Muhammet Furkan Karakaya" class="w-full h-auto filter grayscale md:hover:grayscale-0 transition-all duration-300 cursor-pointer" data-colorize>
-                    </div>
-                    <div class="flex justify-center gap-6 mt-4" id="social-links"></div>
-                </div>
-            </div>
-        </section>
-       
-        <section id="research" class="page-section hidden py-20 md:py-28">
-            <h2 class="text-5xl mb-12">&gt; Research</h2>
-            <h3 class="text-4xl mb-8">Works in Progress</h3>
-            <div class="space-y-12 mb-16" id="wip-container"></div>
-            <h3 class="text-4xl mb-8">Published Articles</h3>
-            <div class="space-y-12" id="published-articles-container"></div>
-        </section>
-
-        <section id="experience" class="page-section hidden py-20 md:py-28">
-             <h2 class="text-5xl mb-8">&gt; Experience</h2>
-             <div class="space-y-8" id="experience-container"></div>
-        </section>
-        
-        <!--
-        <section id="projects" class="page-section hidden py-20 md:py-28">
-            <h2 class="text-5xl mb-8">&gt; Projects</h2>
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-container"></div>
-        </section>
-        -->
-    </main>
-    
-    <footer class="text-center py-6 text-gray-500 text-xl">
-        <p>C:\&gt; Designed & Built by M. Furkan Karakaya, 2025</p>
-    </footer>
-
-    <button id="theme-toggle" title="Toggle Theme">
-        <svg id="theme-icon-sun" class="theme-icon hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.95-4.243l-1.59-1.59M3 12h2.25m.386-6.364l1.591 1.591M12 12a2.25 2.25 0 00-2.25 2.25 2.25 2.25 0 002.25 2.25 2.25 2.25 0 002.25-2.25A2.25 2.25 0 0012 12z" /></svg>
-        <svg id="theme-icon-moon" class="theme-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25c0 5.385 4.365 9.75 9.75 9.75 2.138 0 4.125-.587 5.752-1.599z" /></svg>
-    </button>
-    
-    <div id="research-modal" class="hidden fixed inset-0 bg-black/70 z-[1001] flex items-center justify-center p-4">
-        <div class="retro-card w-full max-w-3xl max-h-[80vh] flex flex-col">
-            <div class="flex justify-between items-center p-4 border-b border-[var(--dark-border)]">
-                <h3 id="modal-title" class="text-3xl pr-4"></h3>
-                <button id="modal-close-btn" class="text-4xl">&times;</button>
-            </div>
-            <div id="modal-content" class="p-6 overflow-y-auto modal-content"></div>
+        <div class="md:col-span-2 order-2 md:order-2 block">
+          <div class="p-1 border-2 border-cyan-400 md:hover:border-white transition-colors" style="transform: rotate(3deg);">
+            <img src="profile.jpg" alt="Muhammet Furkan Karakaya"
+                 class="w-full h-auto filter grayscale md:hover:grayscale-0 transition-all duration-300 cursor-pointer"
+                 data-colorize>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section id="about" class="page-section hidden py-20 md:py-28">
+      <h2 class="text-5xl mb-8">&gt; About Me</h2>
+      <div class="grid md:grid-cols-5 gap-12 items-start">
+        <div class="md:col-span-3">
+          <div id="about-text"></div>
+        </div>
+        <div class="md:col-span-2">
+          <div class="p-1 border-2 border-cyan-400 md:hidden mb-4">
+            <img src="profile.jpg" alt="Muhammet Furkan Karakaya"
+                 class="w-full h-auto filter grayscale md:hover:grayscale-0 transition-all duration-300 cursor-pointer"
+                 data-colorize>
+          </div>
+          <!-- social links will render here -->
+          <div class="flex justify-center gap-6 mt-4" id="social-links"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="research" class="page-section hidden py-20 md:py-28">
+      <h2 class="text-5xl mb-12">&gt; Research</h2>
+      <h3 class="text-4xl mb-8">Works in Progress</h3>
+      <div class="space-y-12 mb-16" id="wip-container"></div>
+      <h3 class="text-4xl mb-8">Published Articles</h3>
+      <div class="space-y-12" id="published-articles-container"></div>
+    </section>
+
+    <section id="experience" class="page-section hidden py-20 md:py-28">
+      <h2 class="text-5xl mb-8">&gt; Experience</h2>
+      <div class="space-y-8" id="experience-container"></div>
+    </section>
+
+    <!--
+    <section id="projects" class="page-section hidden py-20 md:py-28">
+      <h2 class="text-5xl mb-8">&gt; Projects</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-container"></div>
+    </section>
+    -->
+  </main>
+
+  <footer class="text-center py-6 text-gray-500 text-xl">
+    <p>C:\&gt; Designed & Built by M. Furkan Karakaya, 2025</p>
+  </footer>
+
+  <button id="theme-toggle" title="Toggle Theme">
+    <svg id="theme-icon-sun" class="theme-icon hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.95-4.243l-1.59-1.59M3 12h2.25m.386-6.364l1.591 1.591M12 12a2.25 2.25 0 00-2.25 2.25 2.25 2.25 0 002.25 2.25 2.25 2.25 0 002.25-2.25A2.25 2.25 0 0012 12z" /></svg>
+    <svg id="theme-icon-moon" class="theme-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25c0 5.385 4.365 9.75 9.75 9.75 2.138 0 4.125-.587 5.752-1.599z" /></svg>
+  </button>
+
+  <div id="research-modal" class="hidden fixed inset-0 bg-black/70 z-[1001] flex items-center justify-center p-4">
+    <div class="retro-card w-full max-w-3xl max-h-[80vh] flex flex-col">
+      <div class="flex justify-between items-center p-4 border-b border-[var(--dark-border)]">
+        <h3 id="modal-title" class="text-3xl pr-4"></h3>
+        <button id="modal-close-btn" class="text-4xl">&times;</button>
+      </div>
+      <div id="modal-content" class="p-6 overflow-y-auto modal-content"></div>
     </div>
+  </div>
 
-    <script>
+  <script>
     document.addEventListener('DOMContentLoaded', () => {
 
-        const portfolioData = {
-            home: {
-                intro: "I build models and analyze data to understand political parties, elections, and representation. As an enthusiastic self-learner, I explore novel computational tools and methods to support evidence-based decision-making for political individuals, institutions, and entities."
-            },
-            about: {
-                bio: [
-                    "I'm a political scientist with a Ph.D. from Binghamton University, specializing in computational social science. My research focuses on political parties, elections, representation, and party systems, where I employ quantitative and computational methods to analyze political behavior and party strategies.",
-                    "My dissertation, \"A Computational Approach to Party Cohesion: When Do Parties Use the Broad-Appeal Strategy in Different Party Systems?\", explores party behavior through advanced NLP and semantic text analysis.", "I am passionate about transforming complex social questions into testable models through computational and statistical approaches, generating insights that support research, policy, and decision-making."
-                ],
-                socials: [
-                    { name: "LinkedIn", url: "https://www.linkedin.com/in/muhammetfurkankarakaya/", icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-2.199 1.561-4.002 3.492-4.002s3.51 1.802 3.51 4.002v8.399h4.988v-10.131c0-4.87-3.304-7.869-6.479-7.869-3.174 0-5.508 2.399-5.508 2.399v-2.023h-4.987z"/></svg>` },
-                    { name: "GitHub", url: "https://github.com/KarakayaBinghamton", icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386C24 5.373 18.627 0 12 0z"/></svg>` },
-                    { name: "Google Scholar", url: "https://scholar.google.com/citations?user=YVgWtDMAAAAJ&hl=en&oi=ao", icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5L12 0l12 9.5l-5.242 4.269C17.548 11.249 14.978 9 12 9s-5.548 2.249-6.758 4.769zM12 10c-3.314 0-6 2.686-6 6s2.686 6 6 6s6-2.686 6-6s-2.686-6-6-6z"/></svg>` }
-                ]
-            },
-            research: {
-                published: [
-                    { journal: "Dentistry Journal, 2023", title: "Dental Anxiety and Its Association with Dietary Intake and Food Groups", authors: "Begdache, L., Ahmed, E., Malik, S., & <strong class='text-cyan-300'>Karakaya, M. F.</strong>", abstract: "Although there is an established connection between diet and mental health, the relationship between diet and dental anxiety has not been examined yet...This cross-sectional study provides proof of concept that dietary patterns are potentially associated with dental anxiety." },
-                    { journal: "J. of Autism and Dev. Disorders, 2025", title: "A systematic literature review of racial disproportionality in autism in the US", authors: "Kim, H., <strong class='text-cyan-300'>Karakaya, M. F.</strong>, Skinner, M., & Baker, D.", abstract: "In recent years, the Autism and Developmental Disabilities Monitoring Network has observed a shift in racial disparities in autism...These findings prompt a closer look into the causes and implications of these disparities, offering the underlying issues within the current diagnostic system and highlighting the need for further research to ensure equal educational opportunities regardless of disabilities and race/ethnicity." }
-                ],
-                wip: [
-                    { type: "Working Paper", title: "A Computational Measurement for Party Cohesion:Ideological Congruence Score of Electoral Candidates", authors: "<strong class='text-cyan-300'>Karakaya, Muhammet Furkan</strong>", abstract: " This research note proposes and implements an innovative computational approach to measuring party cohesion and conceptualizes as the ideological congruence between party’s ideological platform (manifesto) and the discourses of each nominated candidates. Traditional approaches focus on party discipline that rely on roll-call vote, party unity score and survey-based measures based on subjective perception. Moving beyond the traditional approaches, this study conceptualize party cohesion as an outcome of candidate nomination process and introduces a method that uses sentence transformer language models to compute ideological congruence score based on quantifying semantic similarity between party manifestos and candidates’ public statements on X (Twitter). The proposed party cohesion measure, ideological congruence score (ICS) of electoral candidates, differentiates itself by capturing both elected and unelected candidates’ ideological congruence to their party and provides a scalable continuous measure that allows intraparty, interparty comparison across different party systems. This paper aims to fill the gap in the literature on party cohesion that relies on existing measurement approaches and maps out the details of the computational methodology with empirical illustrations from Turkey and the United States. This approach expands the empirical scope of party cohesion and opens new avenues for comparative party politics. ", image: "3.png" },
-                    { type: "Working Paper", title: "A Computational Approach to Party Cohesion: When Do Parties Use the Broad-Appeal Strategy? An Ethnic Party from Turkey", authors: "<strong class='text-cyan-300'>Karakaya, Muhammet Furkan</strong>", abstract: "When and how do political parties implement the broad-appeal strategy? I argue that political parties use the broad-appeal strategy based on constituent composition across electoral districts. Political parties need to balance party cohesion and electoral competition when they implement the broad-appeal strategy. This study aims to fill the gap in the literature by going beyond the dichotomous approach of whether appealing to a broader audience harms party cohesion or not. I explore what explains variation in party cohesion based on the percentage of core supporters across electoral districts. Moreover, I present an innovative measurement for party cohesion to assess the effects of the broad-appeal strategy based on the candidates’ ideological congruence to party manifestos. The findings indicate that parties nominate ideologically more congruent candidates in electoral districts where the population percentage of core supporters is high and vice versa. To test the argument, I use an ethnic party from Turkey as a case to examine its broad-appeal nomination strategies for the 2015, 2018, and 2023 general elections." , image: "2.png" },
-                    { type: "Working Paper", title: "How do Parties Implement Broad-Appeal Strategies in U.S. Congressional Elections?", authors: "<strong class='text-cyan-300'>Karakaya, Muhammet Furkan</strong>", abstract: "This article examines the extent to which the Democratic and Republican parties implement broad-appeal strategies in Congressional elections. American political parties are notorious for their internal diversity and lack of cohesion. Among the many factors affecting party cohesion in the U.S. is the single-member-district plurality method of election, which encourages candidates to tailor their electoral appeals to their geographic constituencies and tends to reduce ideological cohesion. At the same time, American parties can also appear to be more ideologically unified than one might expect, particularly in recent years as the nationalization of elections has increased. Here, we draw on a form of semantic text analysis to investigate the extent to which Democratic and Republican Party Congressional candidates are ideologically cohesive across electoral districts, as well as the extent to which party cohesion is shaped by the number of party supporters across electoral districts. We draw on a unique computational approach to estimate the ideological distance between party manifestos and each Congressional candidate’s political discourse scraped from their Twitter profiles in the 2016, 2018, 2020, and 2022 Congressional elections, regardless of candidates’ electoral victory or loser status. Our general expectation is that Congressional candidates running in electorally safe districts will be ideologically closer to their party than Congressional candidates running in competitive or volatile districts, where candidates are more likely to tailor their electoral appeals to the needs of the district. Our findings generally support this expectation. We do find less party cohesion in competitive, rather than safe, districts. These findings bear important implications for party strategies and ideological representation, suggesting that high numbers of safe districts encourage greater levels of party cohesion.", image: "1.png" },
-                    { type: "Under Review", title: "Examining the Evolution of Online Tax and Fee Payment Systems", authors: "Jones, P. A., <strong class='text-cyan-300'>Karakaya, M. F.</strong>, & Reitano, V.", abstract: "Subnational governments around the world collect property taxes and user fees through digital and non-digital methods...Collectively, these findings provide evidence for governments adopting digital innovations that benefit citizens and public service provision." },
-                    { type: "Working Paper", title: "Effects of Co-ethnic Terrorism on Ethnic Voting: Kurdish Voters in Turkey", authors: "<strong class='text-cyan-300'>Karakaya, M. F.</strong>" , abstract: " " },
-                    { type: "Working Paper", title: "A Blessing or Curse? Effects of Domestic Terrorism on Cost of Electoral Contestation in Electoral Authoritarian Regimes", authors: "<strong class='text-cyan-300'>Karakaya, M. F.</strong>", abstract: " " },
-                    { type: "Working Paper", title: "Party Vote Share and Cost of Voting: The 2020 House of Representative Election", authors: "<strong class='text-cyan-300'>Karakaya, M. F.</strong>", abstract: " " }
-                ]
-            },
-            experience: [
-                 { title: "Research Assistant", date: "Oct 2024 - Present", org: "Binghamton University", points: ["Supported research projects of faculties from various departments including Public Policy Department, Department of Teaching and Learning and Educational Leadership, Health and Wellness Department.", "Worked and co-authored with faculties from various departments focusing on improving quantitative methodology parts of research paper projects. Co-authored for multiple research paper projects."] },
-                 { title: "Research Consultant", date: "Jan 2022 - Present", org: "Binghamton University Graduate School", points: ["Support +50 graduate students’ research projects regarding statistical modelling, and coding languages per semester.upport graduate students with their research regarding coding languages, including STATA, R programming, SQL, and Python.", "Design and deliver training workshops in coordination with all university departments." , "Lead organizational and administrative tasks and communication between the graduate school and all other departments."] },
-                 { title: "Lecturer", date: "Dec 2024 - Jan 2025", org: "Political Science Department, Binghamton University", points: ["Self-designed and taught a comprehensive course on using Python for data analysis in social science, covering data cleaning, visualization, and statistical analysis.", "Improved skill of students in applying computational and statistical techniques to real-world social science problems, preparing them for data-driven research and policy-making."] },
-                 { title: "Data Analyst", date: "Jan 2024 - Oct 2024", org: "Student Affairs Assessment and Solutions for Engagement, Binghamton University", points: ["Built and optimized extract, transform, load (ETL) pipelines, and integrating multi-source data for reports and analyses.", "Developed automated dashboards and created accurate, reproducible reports, visualizations for evidence-based decision making for the university administration. "] }
-            ]
-        };
+      const portfolioData = {
+        home: {
+          intro: "I build models and analyze data to understand political parties, elections, and representation. As an enthusiastic self-learner, I explore novel computational tools and methods to support evidence-based decision-making for political individuals, institutions, and entities."
+        },
+        about: {
+          bio: [
+            "I'm a political scientist with a Ph.D. from Binghamton University, specializing in computational social science. My research focuses on political parties, elections, representation, and party systems, where I employ quantitative and computational methods to analyze political behavior and party strategies.",
+            "My dissertation, \"A Computational Approach to Party Cohesion: When Do Parties Use the Broad-Appeal Strategy in Different Party Systems?\", explores party behavior through advanced NLP and semantic text analysis.",
+            "I am passionate about transforming complex social questions into testable models through computational and statistical approaches, generating insights that support research, policy, and decision-making."
+          ],
+          socials: [
+            { name: "LinkedIn", url: "https://www.linkedin.com/in/muhammetfurkankarakaya/", icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-2.199 1.561-4.002 3.492-4.002s3.51 1.802 3.51 4.002v8.399h4.988v-10.131c0-4.87-3.304-7.869-6.479-7.869-3.174 0-5.508 2.399-5.508 2.399v-2.023h-4.987z"/></svg>` },
+            { name: "GitHub", url: "https://github.com/KarakayaBinghamton", icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386C24 5.373 18.627 0 12 0z"/></svg>` },
+            { name: "Google Scholar", url: "https://scholar.google.com/citations?user=YVgWtDMAAAAJ&hl=en&oi=ao", icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M5.242 13.769L0 9.5L12 0l12 9.5l-5.242 4.269C17.548 11.249 14.978 9 12 9s-5.548 2.249-6.758 4.769zM12 10c-3.314 0-6 2.686-6 6s2.686 6 6 6s6-2.686 6-6s-2.686-6-6-6z"/></svg>` }
+          ]
+        },
+        research: {
+          published: [
+            { journal: "Dentistry Journal, 2023", title: "Dental Anxiety and Its Association with Dietary Intake and Food Groups", authors: "Begdache, L., Ahmed, E., Malik, S., & <strong class='text-cyan-300'>Karakaya, M. F.</strong>", abstract: "Although there is an established connection between diet and mental health, the relationship between diet and dental anxiety has not been examined yet...This cross-sectional study provides proof of concept that dietary patterns are potentially associated with dental anxiety." },
+            { journal: "J. of Autism and Dev. Disorders, 2025", title: "A systematic literature review of racial disproportionality in autism in the US", authors: "Kim, H., <strong class='text-cyan-300'>Karakaya, M. F.</strong>, Skinner, M., & Baker, D.", abstract: "In recent years, the Autism and Developmental Disabilities Monitoring Network has observed a shift in racial disparities in autism...These findings prompt a closer look into the causes and implications of these disparities, offering the underlying issues within the current diagnostic system and highlighting the need for further research to ensure equal educational opportunities regardless of disabilities and race/ethnicity." }
+          ],
+          wip: [
+            { type: "Working Paper", title: "A Computational Measurement for Party Cohesion:Ideological Congruence Score of Electoral Candidates", authors: "<strong class='text-cyan-300'>Karakaya, Muhammet Furkan</strong>", abstract: " This research note proposes and implements an innovative computational approach to measuring party cohesion and conceptualizes as the ideological congruence between party’s ideological platform (manifesto) and the discourses of each nominated candidates. Traditional approaches focus on party discipline that rely on roll-call vote, party unity score and survey-based measures based on subjective perception. Moving beyond the traditional approaches, this study conceptualize party cohesion as an outcome of candidate nomination process and introduces a method that uses sentence transformer language models to compute ideological congruence score based on quantifying semantic similarity between party manifestos and candidates’ public statements on X (Twitter). The proposed party cohesion measure, ideological congruence score (ICS) of electoral candidates, differentiates itself by capturing both elected and unelected candidates’ ideological congruence to their party and provides a scalable continuous measure that allows intraparty, interparty comparison across different party systems. This paper aims to fill the gap in the literature on party cohesion that relies on existing measurement approaches and maps out the details of the computational methodology with empirical illustrations from Turkey and the United States. This approach expands the empirical scope of party cohesion and opens new avenues for comparative party politics. ", image: "3.png" },
+            { type: "Working Paper", title: "A Computational Approach to Party Cohesion: When Do Parties Use the Broad-Appeal Strategy? An Ethnic Party from Turkey", authors: "<strong class='text-cyan-300'>Karakaya, Muhammet Furkan</strong>", abstract: "When and how do political parties implement the broad-appeal strategy? I argue that political parties use the broad-appeal strategy based on constituent composition across electoral districts. Political parties need to balance party cohesion and electoral competition when they implement the broad-appeal strategy. This study aims to fill the gap in the literature by going beyond the dichotomous approach of whether appealing to a broader audience harms party cohesion or not. I explore what explains variation in party cohesion based on the percentage of core supporters across electoral districts. Moreover, I present an innovative measurement for party cohesion to assess the effects of the broad-appeal strategy based on the candidates’ ideological congruence to party manifestos. The findings indicate that parties nominate ideologically more congruent candidates in electoral districts where the population percentage of core supporters is high and vice versa. To test the argument, I use an ethnic party from Turkey as a case to examine its broad-appeal nomination strategies for the 2015, 2018, and 2023 general elections." , image: "2.png" },
+            { type: "Working Paper", title: "How do Parties Implement Broad-Appeal Strategies in U.S. Congressional Elections?", authors: "<strong class='text-cyan-300'>Karakaya, Muhammet Furkan</strong>", abstract: "This article examines the extent to which the Democratic and Republican parties implement broad-appeal strategies in Congressional elections. American political parties are notorious for their internal diversity and lack of cohesion. Among the many factors affecting party cohesion in the U.S. is the single-member-district plurality method of election, which encourages candidates to tailor their electoral appeals to their geographic constituencies and tends to reduce ideological cohesion. At the same time, American parties can also appear to be more ideologically unified than one might expect, particularly in recent years as the nationalization of elections has increased. Here, we draw on a form of semantic text analysis to investigate the extent to which Democratic and Republican Party Congressional candidates are ideologically cohesive across electoral districts, as well as the extent to which party cohesion is shaped by the number of party supporters across electoral districts. We draw on a unique computational approach to estimate the ideological distance between party manifestos and each Congressional candidate’s political discourse scraped from their Twitter profiles in the 2016, 2018, 2020, and 2022 Congressional elections, regardless of candidates’ electoral victory or loser status. Our general expectation is that Congressional candidates running in electorally safe districts will be ideologically closer to their party than Congressional candidates running in competitive or volatile districts, where candidates are more likely to tailor their electoral appeals to the needs of the district. Our findings generally support this expectation. We do find less party cohesion in competitive, rather than safe, districts. These findings bear important implications for party strategies and ideological representation, suggesting that high numbers of safe districts encourage greater levels of party cohesion.", image: "1.png" },
+            { type: "Under Review", title: "Examining the Evolution of Online Tax and Fee Payment Systems", authors: "Jones, P. A., <strong class='text-cyan-300'>Karakaya, M. F.</strong>, & Reitano, V.", abstract: "Subnational governments around the world collect property taxes and user fees through digital and non-digital methods...Collectively, these findings provide evidence for governments adopting digital innovations that benefit citizens and public service provision." },
+            { type: "Working Paper", title: "Effects of Co-ethnic Terrorism on Ethnic Voting: Kurdish Voters in Turkey", authors: "<strong class='text-cyan-300'>Karakaya, M. F.</strong>" , abstract: " " },
+            { type: "Working Paper", title: "A Blessing or Curse? Effects of Domestic Terrorism on Cost of Electoral Contestation in Electoral Authoritarian Regimes", authors: "<strong class='text-cyan-300'>Karakaya, M. F.</strong>", abstract: " " },
+            { type: "Working Paper", title: "Party Vote Share and Cost of Voting: The 2020 House of Representative Election", authors: "<strong class='text-cyan-300'>Karakaya, M. F.</strong>", abstract: " " }
+          ]
+        },
+        experience: [
+          { title: "Research Assistant", date: "Oct 2024 - Present", org: "Binghamton University", points: ["Supported research projects of faculties from various departments including Public Policy Department, Department of Teaching and Learning and Educational Leadership, Health and Wellness Department.", "Worked and co-authored with faculties from various departments focusing on improving quantitative methodology parts of research paper projects. Co-authored for multiple research paper projects."] },
+          { title: "Research Consultant", date: "Jan 2022 - Present", org: "Binghamton University Graduate School", points: ["Support +50 graduate students’ research projects regarding statistical modelling, and coding languages per semester.upport graduate students with their research regarding coding languages, including STATA, R programming, SQL, and Python.", "Design and deliver training workshops in coordination with all university departments." , "Lead organizational and administrative tasks and communication between the graduate school and all other departments."] },
+          { title: "Lecturer", date: "Dec 2024 - Jan 2025", org: "Political Science Department, Binghamton University", points: ["Self-designed and taught a comprehensive course on using Python for data analysis in social science, covering data cleaning, visualization, and statistical analysis.", "Improved skill of students in applying computational and statistical techniques to real-world social science problems, preparing them for data-driven research and policy-making."] },
+          { title: "Data Analyst", date: "Jan 2024 - Oct 2024", org: "Student Affairs Assessment and Solutions for Engagement, Binghamton University", points: ["Built and optimized extract, transform, load (ETL) pipelines, and integrating multi-source data for reports and analyses.", "Developed automated dashboards and created accurate, reproducible reports, visualizations for evidence-based decision making for the university administration. "] }
+        ]
+      };
 
-        // --- GLOBAL STATE ---
-        let currentTheme = 'dark';
-        
-        // --- RENDER FUNCTIONS ---
-        const renderContent = () => {
-            const homeIntroEl = document.getElementById('home-intro');
-            if (homeIntroEl) homeIntroEl.textContent = portfolioData.home.intro;
-            
-            const aboutTextEl = document.getElementById('about-text');
-            if(aboutTextEl) aboutTextEl.innerHTML = portfolioData.about.bio.map(p => `<p class="mb-4">${p}</p>`).join('');
+      // --- GLOBAL STATE ---
+      let currentTheme = 'dark';
 
-            const socialLinksEl = document.getElementById('social-links');
-            if(socialLinksEl) socialLinksEl.innerHTML = portfolioData.about.socials.map(s => `<a href="${s.url}" target="_blank" class="nav-link text-gray-400 hover:text-blue-400 transform hover:scale-110 transition-transform">${s.icon}</a>`).join('');
-            
-            const wipContainer = document.getElementById('wip-container');
-            if(wipContainer) {
-                wipContainer.innerHTML = portfolioData.research.wip.map(p => {
-                    const learnMoreBtn = p.abstract ? `<button class="retro-button learn-more-btn mt-4" data-title="${p.title.replace(/"/g, '&quot;')}" data-type="wip">Learn More</button>` : '';
-                    const imageHTML = p.image ? `<div class="md:col-span-1 flex items-center justify-center"><img src="${p.image}" alt="${p.title}" class="w-full h-auto"></div>` : '';
-                    const textColSpan = p.image ? 'md:col-span-2' : 'md:col-span-3';
+      // --- RENDER FUNCTIONS ---
+      const renderContent = () => {
+        const homeIntroEl = document.getElementById('home-intro');
+        if (homeIntroEl) homeIntroEl.textContent = portfolioData.home.intro;
 
-                    return `<div class="retro-card p-6"><div class="grid md:grid-cols-3 gap-8 items-center"><div class="${textColSpan}"><p class="text-gray-400 mb-2">${p.type}</p><h4 class="text-3xl mb-2">${p.title}</h4><p class="text-xl mb-4">${p.authors}</p>${learnMoreBtn}</div>${imageHTML}</div></div>`;
-                }).join('');
-            }
-            
-            const publishedContainer = document.getElementById('published-articles-container');
-            if (publishedContainer) {
-                publishedContainer.innerHTML = portfolioData.research.published.map(p => {
-                    const learnMoreBtn = p.abstract ? `<button class="retro-button learn-more-btn mt-4" data-title="${p.title.replace(/"/g, '&quot;')}" data-type="published">Learn More</button>` : '';
-                    return `<div class="retro-card p-6"><p class="text-gray-400 mb-2">${p.journal}</p><h4 class="text-3xl mb-2">${p.title}</h4><p class="text-xl mb-4">${p.authors}</p>${learnMoreBtn}</div>`
-                }).join('');
-            }
+        const aboutTextEl = document.getElementById('about-text');
+        if (aboutTextEl) aboutTextEl.innerHTML = portfolioData.about.bio.map(p => `<p class="mb-4">${p}</p>`).join('');
 
-            const experienceContainer = document.getElementById('experience-container');
-            if (experienceContainer) {
-                experienceContainer.innerHTML = portfolioData.experience.map(e => `<div class="retro-card p-6"><div class="flex flex-wrap justify-between items-baseline gap-2"><h3 class="text-3xl">${e.title}</h3><p class="text-gray-400 text-xl">${e.date}</p></div><p class="text-cyan-300/80 mb-4">${e.org}</p><ul class="list-disc list-inside space-y-2">${e.points.map(p => `<li>${p}</li>`).join('')}</ul></div>`).join('');
-            }
-        };
-
-        // --- UI & ANIMATIONS ---
-        const initNavigation = () => {
-            const navItems = [{ id: 'home', name: 'Home' }, { id: 'about', name: 'About' }, { id: 'research', name: 'Research' }, { id: 'experience', name: 'Experience' }];
-            const desktopNav = document.getElementById('desktop-nav');
-            const mobileMenu = document.getElementById('mobile-menu');
-            desktopNav.innerHTML = navItems.map(item => `<a href="#" data-page="${item.id}" class="nav-link ${item.id === 'home' ? 'active' : ''}">${item.name}</a>`).join('');
-            mobileMenu.innerHTML = navItems.map(item => `<a href="#" data-page="${item.id}" class="nav-link block py-2">${item.name}</a>`).join('');
-            // Mobile-only external links
-            const externalLinks = [
-              { name: 'GitHub', url: 'https://github.com/KarakayaBinghamton' },
-              { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=YVgWtDMAAAAJ&hl=en&authuser=1' },
-              { name: 'LinkedIn', url: 'https://www.linkedin.com/in/muhammetfurkankarakaya/' },
-];
-
-            mobileMenu.innerHTML += `
-              <div class="mt-4 border-t border-cyan-400/40 pt-3">
-                <p class="text-xl text-gray-400 mb-2">External</p>
-                ${externalLinks.map(l => `
-                  <a href="${l.url}" target="_blank" rel="noopener noreferrer"
-                     class="block py-2 text-cyan-300 hover:text-white">
-                    ${l.name}
-                  </a>
-    `).join('')}
-  </div>
-`;
-
-
-            document.addEventListener('click', (e) => {
-                const el = e.target.closest('a,button');
-                if (!el) return;
-
-                const pageId = el.dataset.page || el.dataset.pageLink;
-                if (pageId) {
-                  e.preventDefault();
-                  showPage(pageId);
-                  return;
-                }
-  // No preventDefault here -> external links (GitHub, Scholar, LinkedIn) work normally
-});
-
-                
-            document.getElementById('mobile-menu-button').addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
-        };
-
-        const showPage = (pageId) => {
-            document.querySelectorAll('.page-section').forEach(page => page.classList.add('hidden'));
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.remove('hidden');
-                const observer = new IntersectionObserver(entries => {
-                    if (entries[0].isIntersecting) {
-                        initAnimationsForSection(entries[0].target);
-                        observer.disconnect();
-                    }
-                }, {threshold: 0.1});
-                observer.observe(targetPage);
-            }
-            document.querySelectorAll('.nav-link').forEach(link => link.classList.toggle('active', link.dataset.page === pageId));
-            document.getElementById('mobile-menu').classList.add('hidden');
-            window.scrollTo(0, 0);
-        };
-        
-        const initTypingAnimation = () => {
-            const el = document.getElementById('typing-subtitle');
-            if (!el) return;
-            const phrases = ["Computational Social Scientist, PH.D.", "Data Analyst & Researcher.", "Political Scientist."];
-            let phraseIndex = 0, charIndex = 0, isDeleting = false;
-            
-            function type() {
-                const currentPhrase = phrases[phraseIndex];
-                if (isDeleting) el.textContent = currentPhrase.substring(0, charIndex--);
-                else el.textContent = currentPhrase.substring(0, charIndex++);
-
-                if (!isDeleting && charIndex === currentPhrase.length) setTimeout(() => isDeleting = true, 2000);
-                else if (isDeleting && charIndex === 0) {
-                    isDeleting = false;
-                    phraseIndex = (phraseIndex + 1) % phrases.length;
-                }
-                setTimeout(type, isDeleting ? 75 : 150);
-            }
-            type();
-        };
-        
-        const initAnimationsForSection = (section) => {
-             section.querySelectorAll('.retro-card').forEach((card, i) => {
-                setTimeout(() => card.classList.add('is-visible'), i * 100);
-            });
+        const socialLinksEl = document.getElementById('social-links');
+        if (socialLinksEl) {
+          // NOTE: no .nav-link class; open in new tab; safe rel
+          socialLinksEl.innerHTML = portfolioData.about.socials.map(s => `
+            <a href="${s.url}" target="_blank" rel="noopener noreferrer"
+               class="external-link text-gray-400 hover:text-blue-400 transform hover:scale-110 transition-transform"
+               aria-label="${s.name}">
+              ${s.icon}
+            </a>
+          `).join('');
         }
 
-        const initIntersectionObserver = () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                       initAnimationsForSection(entry.target);
-                       observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
-            document.querySelectorAll('.page-section').forEach(section => observer.observe(section));
-        };
-        
-        const modal = document.getElementById('research-modal');
-        const modalTitle = document.getElementById('modal-title');
-        const modalContent = document.getElementById('modal-content');
-        
-        function openModal(title, abstract) {
-            modalTitle.textContent = title;
-            modalContent.innerHTML = abstract.split('\n').map(p => `<p class="mb-4">${p}</p>`).join('');
-            modal.classList.remove('hidden');
+        const wipContainer = document.getElementById('wip-container');
+        if (wipContainer) {
+          wipContainer.innerHTML = portfolioData.research.wip.map(p => {
+            const learnMoreBtn = p.abstract ? `<button class="retro-button learn-more-btn mt-4" data-title="${p.title.replace(/"/g, '&quot;')}" data-type="wip">Learn More</button>` : '';
+            const imageHTML = p.image ? `<div class="md:col-span-1 flex items-center justify-center"><img src="${p.image}" alt="${p.title}" class="w-full h-auto"></div>` : '';
+            const textColSpan = p.image ? 'md:col-span-2' : 'md:col-span-3';
+            return `
+              <div class="retro-card p-6">
+                <div class="grid md:grid-cols-3 gap-8 items-center">
+                  <div class="${textColSpan}">
+                    <p class="text-gray-400 mb-2">${p.type}</p>
+                    <h4 class="text-3xl mb-2">${p.title}</h4>
+                    <p class="text-xl mb-4">${p.authors}</p>
+                    ${learnMoreBtn}
+                  </div>
+                  ${imageHTML}
+                </div>
+              </div>`;
+          }).join('');
         }
 
-        function closeModal() { modal.classList.add('hidden'); }
+        const publishedContainer = document.getElementById('published-articles-container');
+        if (publishedContainer) {
+          publishedContainer.innerHTML = portfolioData.research.published.map(p => {
+            const learnMoreBtn = p.abstract ? `<button class="retro-button learn-more-btn mt-4" data-title="${p.title.replace(/"/g, '&quot;')}" data-type="published">Learn More</button>` : '';
+            return `
+              <div class="retro-card p-6">
+                <p class="text-gray-400 mb-2">${p.journal}</p>
+                <h4 class="text-3xl mb-2">${p.title}</h4>
+                <p class="text-xl mb-4">${p.authors}</p>
+                ${learnMoreBtn}
+              </div>`;
+          }).join('');
+        }
 
-        document.getElementById('modal-close-btn').addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-        document.addEventListener('keydown', (e) => { if (e.key === "Escape" && !modal.classList.contains('hidden')) closeModal(); });
+        const experienceContainer = document.getElementById('experience-container');
+        if (experienceContainer) {
+          experienceContainer.innerHTML = portfolioData.experience.map(e => `
+            <div class="retro-card p-6">
+              <div class="flex flex-wrap justify-between items-baseline gap-2">
+                <h3 class="text-3xl">${e.title}</h3>
+                <p class="text-gray-400 text-xl">${e.date}</p>
+              </div>
+              <p class="text-cyan-300/80 mb-4">${e.org}</p>
+              <ul class="list-disc list-inside space-y-2">
+                ${e.points.map(p => `<li>${p}</li>`).join('')}
+              </ul>
+            </div>`).join('');
+        }
+      };
 
-        document.body.addEventListener('click', (e) => {
-            if (e.target.closest('.learn-more-btn')) {
-                const button = e.target.closest('.learn-more-btn');
-                const title = button.dataset.title;
-                const type = button.dataset.type;
-                let article;
-                if (type === 'wip') {
-                    article = portfolioData.research.wip.find(p => p.title === title);
-                } else {
-                    article = portfolioData.research.published.find(p => p.title === title);
-                }
-                if (article && article.abstract) {
-                    openModal(article.title, article.abstract);
-                }
-            }
+      // --- UI & ANIMATIONS ---
+      const initNavigation = () => {
+        const navItems = [
+          { id: 'home', name: 'Home' },
+          { id: 'about', name: 'About' },
+          { id: 'research', name: 'Research' },
+          { id: 'experience', name: 'Experience' }
+        ];
+        const desktopNav = document.getElementById('desktop-nav');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        desktopNav.innerHTML = navItems.map(item =>
+          `<a href="#" data-page="${item.id}" class="nav-link ${item.id === 'home' ? 'active' : ''}">${item.name}</a>`
+        ).join('');
+
+        mobileMenu.innerHTML = navItems.map(item =>
+          `<a href="#" data-page="${item.id}" class="nav-link block py-2">${item.name}</a>`
+        ).join('');
+
+        // Mobile-only external links
+        const externalLinks = [
+          { name: 'GitHub', url: 'https://github.com/KarakayaBinghamton' },
+          { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=YVgWtDMAAAAJ&hl=en&authuser=1' },
+          { name: 'LinkedIn', url: 'https://www.linkedin.com/in/muhammetfurkankarakaya/' },
+        ];
+        mobileMenu.innerHTML += `
+          <div class="mt-4 border-t border-cyan-400/40 pt-3">
+            <p class="text-xl text-gray-400 mb-2">External</p>
+            ${externalLinks.map(l => `
+              <a href="${l.url}" target="_blank" rel="noopener noreferrer"
+                 class="block py-2 text-cyan-300 hover:text-white">
+                ${l.name}
+              </a>`).join('')}
+          </div>`;
+
+        // SINGLE, SAFE DELEGATED HANDLER:
+        // Intercept ONLY internal SPA nav (data-page / data-page-link).
+        // All other links (including external) navigate normally.
+        document.addEventListener('click', (e) => {
+          const el = e.target.closest('a,button');
+          if (!el) return;
+
+          const pageId = el.dataset.page || el.dataset.pageLink;
+          if (pageId) {
+            e.preventDefault();
+            showPage(pageId);
+            return;
+          }
+          // No preventDefault here -> externals work on desktop & mobile
         });
 
-        const initThemeToggle = () => {
-            const themeToggleButton = document.getElementById('theme-toggle');
-            themeToggleButton.addEventListener('click', () => {
-                const newTheme = document.body.classList.contains('light') ? 'dark' : 'light';
-                applyTheme(newTheme);
-                localStorage.setItem('theme', newTheme);
-            });
-            applyTheme(localStorage.getItem('theme') || 'dark');
-        };
+        // mobile menu toggle
+        document.getElementById('mobile-menu-button')
+          .addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+      };
 
-        const applyTheme = (theme) => {
-            currentTheme = theme;
-            const sunIcon = document.getElementById('theme-icon-sun');
-            const moonIcon = document.getElementById('theme-icon-moon');
-            if (theme === 'light') {
-                document.body.classList.add('light');
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-            } else {
-                document.body.classList.remove('light');
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
+      const showPage = (pageId) => {
+        document.querySelectorAll('.page-section').forEach(page => page.classList.add('hidden'));
+        const targetPage = document.getElementById(pageId);
+        if (targetPage) {
+          targetPage.classList.remove('hidden');
+          const observer = new IntersectionObserver(entries => {
+            if (entries[0].isIntersecting) {
+              initAnimationsForSection(entries[0].target);
+              observer.disconnect();
             }
-        };
+          }, { threshold: 0.1 });
+          observer.observe(targetPage);
+        }
+        document.querySelectorAll('.nav-link')
+          .forEach(link => link.classList.toggle('active', link.dataset.page === pageId));
+        document.getElementById('mobile-menu').classList.add('hidden');
+        window.scrollTo(0, 0);
+      };
 
-        renderContent();
-        initNavigation();
-        initTypingAnimation();
-        initIntersectionObserver();
-        initThemeToggle();
-        showPage('home');
+      const initTypingAnimation = () => {
+        const el = document.getElementById('typing-subtitle');
+        if (!el) return;
+        const phrases = ["Computational Social Scientist, PH.D.", "Data Analyst & Researcher.", "Political Scientist."];
+        let phraseIndex = 0, charIndex = 0, isDeleting = false;
+
+        function type() {
+          const currentPhrase = phrases[phraseIndex];
+          if (isDeleting) el.textContent = currentPhrase.substring(0, charIndex--);
+          else el.textContent = currentPhrase.substring(0, charIndex++);
+
+          if (!isDeleting && charIndex === currentPhrase.length) setTimeout(() => isDeleting = true, 2000);
+          else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            phraseIndex = (phraseIndex + 1) % phrases.length;
+          }
+          setTimeout(type, isDeleting ? 75 : 150);
+        }
+        type();
+      };
+
+      const initAnimationsForSection = (section) => {
+        section.querySelectorAll('.retro-card').forEach((card, i) => {
+          setTimeout(() => card.classList.add('is-visible'), i * 100);
+        });
+      }
+
+      const initIntersectionObserver = () => {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              initAnimationsForSection(entry.target);
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.page-section').forEach(section => observer.observe(section));
+      };
+
+      // Modal (research)
+      const modal = document.getElementById('research-modal');
+      const modalTitle = document.getElementById('modal-title');
+      const modalContent = document.getElementById('modal-content');
+
+      function openModal(title, abstract) {
+        modalTitle.textContent = title;
+        modalContent.innerHTML = abstract.split('\n').map(p => `<p class="mb-4">${p}</p>`).join('');
+        modal.classList.remove('hidden');
+      }
+      function closeModal() { modal.classList.add('hidden'); }
+
+      document.getElementById('modal-close-btn').addEventListener('click', closeModal);
+      modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', (e) => { if (e.key === "Escape" && !modal.classList.contains('hidden')) closeModal(); });
+
+      document.body.addEventListener('click', (e) => {
+        const btn = e.target.closest('.learn-more-btn');
+        if (!btn) return;
+        const title = btn.dataset.title;
+        const type = btn.dataset.type;
+        let article = (type === 'wip')
+          ? portfolioData.research.wip.find(p => p.title === title)
+          : portfolioData.research.published.find(p => p.title === title);
+        if (article && article.abstract) openModal(article.title, article.abstract);
+      });
+
+      // Theme toggle
+      const initThemeToggle = () => {
+        const themeToggleButton = document.getElementById('theme-toggle');
+        themeToggleButton.addEventListener('click', () => {
+          const newTheme = document.body.classList.contains('light') ? 'dark' : 'light';
+          applyTheme(newTheme);
+          localStorage.setItem('theme', newTheme);
+        });
+        applyTheme(localStorage.getItem('theme') || 'dark');
+      };
+      const applyTheme = (theme) => {
+        currentTheme = theme;
+        const sunIcon = document.getElementById('theme-icon-sun');
+        const moonIcon = document.getElementById('theme-icon-moon');
+        if (theme === 'light') {
+          document.body.classList.add('light');
+          sunIcon.classList.remove('hidden');
+          moonIcon.classList.add('hidden');
+        } else {
+          document.body.classList.remove('light');
+          sunIcon.classList.add('hidden');
+          moonIcon.classList.remove('hidden');
+        }
+      };
+
+      // Tap-to-colorize images (mobile)
+      const initImageColorize = () => {
+        document.querySelectorAll('img[data-colorize]').forEach(img => {
+          img.classList.add('transition-all', 'duration-300');
+          const toggle = () => {
+            if (img.classList.contains('grayscale')) {
+              img.classList.remove('grayscale');
+              img.classList.add('grayscale-0');
+            } else {
+              img.classList.add('grayscale');
+              img.classList.remove('grayscale-0');
+            }
+          };
+          img.addEventListener('click', toggle);
+          img.addEventListener('touchend', toggle, { passive: true });
+          img.tabIndex = 0;
+          img.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+          });
+        });
+      };
+
+      // Init
+      renderContent();
+      initNavigation();
+      initTypingAnimation();
+      initIntersectionObserver();
+      initThemeToggle();
+      initImageColorize();
+      showPage('home');
 
     });
-    </script>
+  </script>
 </body>
 </html>
-
