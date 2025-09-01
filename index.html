@@ -312,7 +312,26 @@
             const mobileMenu = document.getElementById('mobile-menu');
             desktopNav.innerHTML = navItems.map(item => `<a href="#" data-page="${item.id}" class="nav-link ${item.id === 'home' ? 'active' : ''}">${item.name}</a>`).join('');
             mobileMenu.innerHTML = navItems.map(item => `<a href="#" data-page="${item.id}" class="nav-link block py-2">${item.name}</a>`).join('');
-            
+            // Mobile-only external links
+            const externalLinks = [
+              { name: 'GitHub', url: 'https://github.com/KarakayaBinghamton' },
+              { name: 'Google Scholar', url: 'https://scholar.google.com/citations?user=YVgWtDMAAAAJ&hl=en&authuser=1' },
+              { name: 'LinkedIn', url: 'https://www.linkedin.com/in/muhammetfurkankarakaya/' },
+];
+
+            mobileMenu.innerHTML += `
+              <div class="mt-4 border-t border-cyan-400/40 pt-3">
+                <p class="text-xl text-gray-400 mb-2">External</p>
+                ${externalLinks.map(l => `
+                  <a href="${l.url}" target="_blank" rel="noopener noreferrer"
+                     class="block py-2 text-cyan-300 hover:text-white">
+                    ${l.name}
+                  </a>
+    `).join('')}
+  </div>
+`;
+
+
             document.querySelectorAll('.nav-link, .retro-button[data-page-link]').forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
